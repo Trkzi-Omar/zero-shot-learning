@@ -5,7 +5,7 @@ This document outlines the specification for creating and demonstrating three si
 
 ---
 
-## 1. Text Sentiment Classification for Unseen Topics
+## Text Sentiment Classification for Unseen Topics
 
 ### Objective
 Implement a system that classifies the sentiment of text samples on topics not present in the training data. For example, if the training set is composed of movie reviews, the model should still be able to classify sentiment on sports or travel reviews without any labeled examples from those topics.
@@ -34,65 +34,6 @@ Implement a system that classifies the sentiment of text samples on topics not p
 - A trained sentiment classification model.
 - A script or function that takes new textual data (unseen domain) and outputs sentiment predictions.
 
----
-
-## 2. Image Classification with Zero-Shot Labels
-
-### Objective
-Classify images from classes not present in the training data using text descriptions or labels. For instance, if the training images involve dogs and cats, the system should detect zebras or lions by relying on textual embeddings.
-
-### Requirements
-- **Model**: A vision-language model such as CLIP.
-- **Training Data**: A small labeled dataset of seen classes (optional if using a fully pretrained vision-language model).
-- **Unseen Class Descriptions**: Textual or semantic descriptions of new image classes.
-- **Infrastructure**: Python environment with PyTorch or similar frameworks.
-
-### Implementation Outline
-1. **Data Preparation**  
-   - Gather a few labeled images for seen classes (if fine-tuning is necessary).
-   - Collect images for testing from unseen categories.
-2. **Model Setup**  
-   - Use a pretrained CLIP model (or equivalent) that generates embeddings for both images and text.
-3. **Zero-Shot Inference**  
-   - Encode the unseen class descriptions into text embeddings.
-   - Encode the test images into image embeddings.
-   - Match image embeddings to the closest text embedding using similarity measures.
-4. **Evaluation**  
-   - Compare zero-shot predictions to actual labels of the unseen classes.
-   - Measure accuracy or other metrics to validate performance.
-
-### Deliverables
-- A script that, given an image and textual descriptions of unseen classes, returns the most likely class.
-- A small test dataset of unseen categories to validate performance.
-
----
-
-## 3. Intent Recognition for Chatbots
-
-### Objective
-Enable a chatbot to recognize user intents not included in the original training set. For example, if the chatbot was trained on "play music" and "check weather," it should identify new intents such as "book a flight."
-
-### Requirements
-- **Model**: A sentence embedding model (e.g., Universal Sentence Encoder, Sentence-BERT).
-- **Training Data**: A set of sample queries labeled with known intents.
-- **Unseen Intent Descriptions**: Descriptions for new intents to be recognized at inference time.
-- **Infrastructure**: Python environment with relevant NLP libraries.
-
-### Implementation Outline
-1. **Data Preparation**  
-   - Collect a dataset of user queries mapped to known intents (e.g., "play music," "check weather").
-2. **Embedding Extraction**  
-   - Encode the training queries and their intent labels using a sentence embedding model.
-   - Encode each unseen intent’s description in the same embedding space.
-3. **Intent Classifier**  
-   - Train a classifier or use a similarity-based approach to match user queries to the closest known intent embedding.
-4. **Zero-Shot Recognition**  
-   - When encountering a query for an unseen intent, compare the query embedding to the embedding of the new intent description.
-   - Assign the new intent if it has the highest similarity.
-
-### Deliverables
-- A trained intent recognition module.
-- A process for adding and testing new intents without retraining on labeled samples.
 
 ---
 
